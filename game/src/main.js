@@ -183,6 +183,7 @@ export class Game {
     }
   }
 
+  // Runs once per frame: reads the controls, moves the plane, then checks rings, ground, fuel and the valley edge.
   step(dt) {
     const inp = this.input;
     // Mouse position nudges the camera a touch, left and right.

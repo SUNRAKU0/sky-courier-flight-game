@@ -215,7 +215,9 @@ export class Game {
     const targetSpeed = lerp(CONFIG.minSpeed, CONFIG.maxSpeed, this.throttle) +
       (this.boosting ? CONFIG.boostSpeed : 0);
     this.speed = lerp(this.speed, targetSpeed, clamp(dt * 0.6, 0, 1));
-    this.pitch = clamp(this.pitch + pitchIn * 0.7 * dt, -0.5, 0.5);
+    // Pitch is capped so the plane can't flip nose-over-tail in one hard yank of the stick.
+    const pitchLimit = 0.5;
+    this.pitch = clamp(this.pitch + pitchIn * 0.7 * dt, -pitchLimit, pitchLimit);
     const targetBank = bankIn * CONFIG.bankMax;
     this.bank = lerp(this.bank, targetBank, clamp(dt * 5, 0, 1));
     this.heading += -this.bank * CONFIG.turnRate * dt;

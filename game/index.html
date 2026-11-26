@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sky Courier — a flight game</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="stage">
+  <canvas id="game"></canvas>
+
+  <!-- Lit instruments, always on top of the view -->
+  <div id="hud" class="panel">
+    <div class="hud-row">
+      <div class="gauge"><label>ALTITUDE</label><span id="hud-alt">0 m</span></div>
+      <div class="gauge"><label>SPEED</label><span id="hud-spd">0 km/h</span></div>
+      <div class="gauge"><label>HEADING</label><span id="hud-hdg">000°</span></div>
+      <div class="gauge"><label>SCORE</label><span id="hud-score">0</span></div>
+    </div>
+    <div class="hud-row">
+      <div class="bar-wrap"><label>FUEL</label><div class="bar"><div id="hud-fuel" class="fill fuel"></div></div></div>
+      <div class="bar-wrap"><label>THROTTLE</label><div class="bar"><div id="hud-thr" class="fill thr"></div></div></div>
+      <div class="bar-wrap"><label>DAMAGE</label><div class="bar"><div id="hud-dmg" class="fill dmg"></div></div></div>
+      <div class="gauge"><label>NEAREST</label><span id="hud-near">RUNWAY 0 m</span></div>
+    </div>
+    <div class="hud-row mission"><span id="hud-mission">Ring Run — 0/8 rings</span></div>
+  </div>
+
+  <canvas id="compass" width="340" height="30" title="Compass"></canvas>
+  <canvas id="attitude" width="120" height="120" title="Attitude indicator"></canvas>
+
+  <div id="toast" class="hidden"></div>
+
+  <!-- Title screen -->
+  <div id="title-screen" class="overlay">
+    <h1>SKY COURIER</h1>
+    <p class="tag">A little prop plane, one big valley, three ways to earn your wings.</p>
+    <div class="missions">
+      <button id="btn-rings" class="mission-btn"><b>1 · Ring Run</b><span>Fly through all 8 glowing rings</span></button>
+      <button id="btn-cargo" class="mission-btn"><b>2 · Cargo Drop</b><span>Drop the crate on the yellow zone (press C)</span></button>
+      <button id="btn-landing" class="mission-btn"><b>3 · Landing Challenge</b><span>Touch down on the runway under 198 km/h</span></button>
+    </div>
+    <div class="controls">
+      <p><b>W/S</b> or <b>↑/↓</b> pitch &nbsp;·&nbsp; <b>A/D</b> or <b>←/→</b> bank &amp; turn</p>
+      <p><b>Shift</b> throttle up &nbsp;·&nbsp; <b>Ctrl</b> throttle down &nbsp;·&nbsp; <b>Space</b> boost</p>
+      <p><b>C</b> drop cargo &nbsp;·&nbsp; mouse nudges the camera &nbsp;·&nbsp; click to start</p>
+      <p class="fine">Watch your fuel — throttle drinks it, and the valley has no petrol stations.</p>
+    </div>
+  </div>
+
+  <!-- End screen -->
+  <div id="end-screen" class="overlay hidden">
+    <h1 id="end-title">Sortie complete!</h1>
+    <p id="end-reason" class="tag"></p>
+    <p id="end-score" class="score-line"></p>
+    <div class="missions">
+      <button id="btn-again" class="mission-btn"><b>Fly again</b><span>Same valley, fresh fuel</span></button>
+      <button id="btn-restart" class="mission-btn"><b>Change mission</b><span>Back to the title screen</span></button>
+    </div>
+  </div>
+</div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
